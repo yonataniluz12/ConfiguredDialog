@@ -5,8 +5,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -17,6 +20,7 @@ public class MainActivity extends AppCompatActivity {
     AlertDialog.Builder adb;
     final String [] COLORS = {"RED","GREEN","BLUE"};
     int [] color ;
+    Intent si;
     AlertDialog.Builder adb2;
     AlertDialog.Builder adb3;
     AlertDialog.Builder adb4;
@@ -114,5 +118,20 @@ public class MainActivity extends AppCompatActivity {
         });
         AlertDialog ad = adb4.create();
         ad.show();
+    }
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main, menu);
+        menu.add(0, 0, 100, "Credits");
+        return true;
+    }
+
+    public boolean onOptionsItemSelected(MenuItem menuItem) {
+        String str = menuItem.getTitle().toString();
+
+        if (str.equals("Credits")) {
+            Intent si = new Intent(this, MainActivity2.class);
+            startActivity(si);
+        }
+        return true;
     }
 }
